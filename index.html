@@ -16,9 +16,8 @@
         
         h3 { margin: 0 0 15px 0; color: var(--primary); border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; font-size: 14px; text-transform: uppercase; font-weight: 800; letter-spacing: 0.5px; display:flex; justify-content:space-between; align-items:center; }
         
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .grid-4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px; }
-        .metric-card { background: white; padding: 15px; border-radius: 10px; border: 1px solid #e2e8f0; text-align: center; transition: 0.3s; }
+        .metric-card { background: white; padding: 15px; border-radius: 10px; border: 1px solid #e2e8f0; text-align: center; }
         .m-title { font-size: 10px; color: #64748b; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
         .m-val { font-size: 22px; font-weight: 900; margin-top: 8px; color: var(--primary); }
         
@@ -27,61 +26,41 @@
         label { font-size: 11px; font-weight: 700; color: #475569; margin-bottom: -4px; display: block; text-transform: uppercase; letter-spacing: 0.5px; }
         
         .btn-main { background: var(--accent); color: white; border: none; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
-        .btn-main:hover { background: #4338ca; }
         .btn-success { background: var(--success); color: white; border: none; font-weight: bold; cursor: pointer; }
         .btn-print { background: #475569; color: white; border: none; font-weight: bold; cursor: pointer; }
-        .btn-sm { padding: 6px 10px; font-size: 10px; margin: 0 2px 0 0; width: auto; border-radius: 6px; display: inline-block; font-weight:bold; cursor:pointer;}
+        .btn-sm { padding: 6px 10px; font-size: 10px; border-radius: 6px; font-weight:bold; cursor:pointer; border:none;}
         
         table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 5px; }
         th, td { padding: 10px; border-bottom: 1px solid #e2e8f0; text-align: left; vertical-align: top; }
-        th { background: #f8fafc; font-weight: 800; color: #64748b; text-transform: uppercase; font-size: 10px; letter-spacing: 0.5px; }
+        th { background: #f8fafc; font-weight: 800; color: #64748b; text-transform: uppercase; font-size: 10px; }
         
-        .badge { padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; }
-        .b-masuk { background: #d1fae5; color: #059669; } .b-keluar { background: #fee2e2; color: #e11d48; } .b-aktif { background: #dbeafe; color: #2563eb; } .b-selesai { background: #f1f5f9; color: #64748b; }
+        .badge { padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 800; text-transform: uppercase; }
+        .b-masuk { background: #d1fae5; color: #059669; } .b-keluar { background: #fee2e2; color: #e11d48; } .b-aktif { background: #dbeafe; color: #2563eb; }
+        
+        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #e2e8f0; z-index: 1000; }
+        .nav-item { border: none; background: none; font-size: 10px; color: #94a3b8; display: flex; flex-direction: column; align-items: center; width: 20%; cursor: pointer; font-weight: 700; }
+        .nav-item.active { color: var(--primary); }
+        .nav-icon { font-size: 22px; margin-bottom: 4px; }
         
         .page { display: none; animation: fadeIn 0.4s ease; } .active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #e2e8f0; z-index: 1000; box-shadow: 0 -10px 20px rgba(0,0,0,0.03); }
-        .nav-item { border: none; background: none; font-size: 10px; color: #94a3b8; display: flex; flex-direction: column; align-items: center; width: 20%; cursor: pointer; font-weight: 700; margin:0; padding:0; transition: 0.3s; }
-        .nav-item.active { color: var(--primary); transform: translateY(-2px); }
-        .nav-icon { font-size: 22px; margin-bottom: 4px; }
-        
-        /* LEMBAR DISPOSISI PRINT LAYOUT */
-        .disposisi-box { display:none; font-family: 'Times New Roman', Times, serif; color: #000; font-size: 14px; border: 2px solid #000; padding: 20px; background: white; }
-        .d-header { text-align: center; border-bottom: 3px double #000; margin-bottom: 15px; padding-bottom: 10px; }
-        .d-title { font-size: 24px; font-weight: bold; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
-        .d-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
-        .d-table td { border: 1px solid #000; padding: 8px 12px; vertical-align: top; }
-        .d-isi { min-height: 150px; border: 1px solid #000; padding: 10px; margin-bottom: 20px; }
-        
-        .header-print { display: none; text-align: center; margin-bottom: 20px; border-bottom: 3px double #000; padding-bottom: 10px; }
-        .ttd-area { display: none; margin-top: 50px; text-align: right; font-size: 14px; }
-        .ttd-area div { display: inline-block; text-align: center; width: 250px; }
-        
+
+        /* PRINT */
         @media print {
-            body { background: white; padding: 0; margin: 0; font-size:12pt; }
             .no-print, .bottom-nav { display: none !important; }
-            .card { border: none; box-shadow: none; margin: 0; padding: 0; }
-            .header-print { display: block; }
-            .ttd-area { display: block; }
-            table, th, td { border-color: #000; color: #000; }
-            th { background: #f1f5f9 !important; -webkit-print-color-adjust: exact; }
-            .page { page-break-after: auto; }
-            .disposisi-box { display: block; }
+            .header-print { display: block !important; text-align: center; border-bottom: 3px double #000; margin-bottom: 20px; }
+            .disposisi-box { display: block !important; font-family: 'Times New Roman', serif; border: 2px solid #000; padding: 20px; }
         }
-    </script>
     </style>
 </head>
 <body>
 
     <div id="p-home" class="page active">
         <div class="hero-box no-print">
-            <h2 id="v-pt" style="margin:0; font-size: 24px; letter-spacing: 1px; font-weight:900;">SEKRETARIAT PRO</h2>
+            <h2 id="v-pt" style="margin:0; font-size: 24px; font-weight:900;">SEKRETARIAT PRO</h2>
             <p id="v-tgl" style="margin:8px 0 0 0; opacity:0.8; font-size:13px; font-weight:600;"></p>
         </div>
         
-        <h3 class="no-print" style="margin-bottom:10px;">📊 Executive Analytics</h3>
         <div class="grid-4 no-print">
             <div class="metric-card"><div class="m-title">Surat Masuk</div><div class="m-val" id="v-sm">0</div></div>
             <div class="metric-card"><div class="m-title">Surat Keluar</div><div class="m-val" id="v-sk">0</div></div>
@@ -90,153 +69,99 @@
         </div>
 
         <div class="card no-print">
-            <h3 style="font-size:12px;">📈 Rasio Korespondensi (Tahun Ini)</h3>
-            <canvas id="secChart" height="200"></canvas>
+            <h3>📈 Statistik Korespondensi</h3>
+            <canvas id="secChart" height="180"></canvas>
         </div>
     </div>
 
     <div id="p-surat" class="page">
         <div class="card no-print">
-            <h3>✉️ Registrasi Surat (TNDE)</h3>
-            <label>Jenis Registrasi</label>
+            <h3>✉️ Registrasi Surat Elektronik</h3>
+            <label>Jenis Surat</label>
             <select id="s-jenis" onchange="cekAutoNomor()">
-                <option value="masuk">📥 SURAT MASUK (Terima)</option>
-                <option value="keluar">📤 SURAT KELUAR (Kirim)</option>
+                <option value="masuk">📥 SURAT MASUK</option>
+                <option value="keluar">📤 SURAT KELUAR</option>
             </select>
-            
             <div style="display:flex; gap:10px; align-items:flex-end;">
-                <div style="flex:1;">
-                    <label>Nomor Surat Resmi</label>
-                    <input type="text" id="s-no" placeholder="Contoh: 001/SEC/IV/2026">
-                </div>
-                <button id="btn-auto" class="btn-success" style="display:none; width:auto; padding:12px; margin-bottom:14px; border-radius:8px;" onclick="generateNomor()" title="Buat Nomor Otomatis">⚡ Auto</button>
+                <div style="flex:1;"><label>Nomor Surat</label><input type="text" id="s-no" placeholder="001/SEC/IV/2026"></div>
+                <button id="btn-auto" class="btn-success" style="display:none; width:auto; padding:12px; margin-bottom:14px;" onclick="generateNomor()">⚡ Auto</button>
             </div>
-
-            <div class="grid">
-                <div><label>Tanggal Surat</label><input type="date" id="s-tgl"></div>
-                <div><label>Tujuan / Pengirim</label><input type="text" id="s-pihak" placeholder="Instansi / Perorangan"></div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                <div><label>Tanggal</label><input type="date" id="s-tgl"></div>
+                <div><label>Pihak</label><input type="text" id="s-pihak" placeholder="Asal/Tujuan"></div>
             </div>
-            <label>Perihal / Ringkasan Isi</label>
-            <textarea id="s-hal" rows="2" placeholder="Tuliskan perihal surat..."></textarea>
-            <button class="btn-main" onclick="catatSurat()">💾 SIMPAN ARSIP SURAT</button>
+            <label>Perihal</label>
+            <textarea id="s-hal" rows="2"></textarea>
+            <button class="btn-main" onclick="catatSurat()">💾 SIMPAN ARSIP</button>
         </div>
-
         <div class="card no-print">
-            <h3>📁 Database Surat Terbaru</h3>
-            <div style="overflow-x:auto;"><div id="list-surat"></div></div>
-        </div>
-
-        <div id="print-disposisi" class="disposisi-box">
-            <div class="d-header">
-                <h2 id="d-kop" class="d-title">NAMA INSTANSI</h2>
-                <div style="font-size:18px; font-weight:bold; margin-top:5px; text-decoration:underline;">LEMBAR DISPOSISI</div>
-            </div>
-            <table class="d-table">
-                <tr>
-                    <td width="50%"><b>Indeks Berkas:</b> <span id="d-indeks"></span></td>
-                    <td width="50%"><b>Kode Klasifikasi:</b> -</td>
-                </tr>
-                <tr>
-                    <td><b>Tanggal Surat:</b> <span id="d-tgl"></span></td>
-                    <td><b>Diterima Tanggal:</b> <span id="d-terima"></span></td>
-                </tr>
-                <tr>
-                    <td><b>Nomor Surat:</b> <br><span id="d-no" style="font-size:16px; font-weight:bold;"></span></td>
-                    <td><b>Asal Surat:</b> <br><span id="d-asal" style="font-size:16px;"></span></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><b>Perihal / Isi Ringkas:</b><br><br><span id="d-hal" style="font-style:italic;"></span><br><br></td>
-                </tr>
-            </table>
-            <div style="display:flex; border:1px solid #000; min-height:200px;">
-                <div style="width:50%; border-right:1px solid #000; padding:10px;"><b>Diteruskan Kepada Yth:</b><br><br>1.<br>2.<br>3.</div>
-                <div style="width:50%; padding:10px;"><b>Instruksi / Informasi:</b><br><br></div>
-            </div>
+            <h3>📁 Daftar Surat Terbaru</h3>
+            <div style="overflow-x:auto;" id="list-surat"></div>
         </div>
     </div>
 
     <div id="p-tamu" class="page">
         <div class="card no-print">
-            <h3>👥 E-Guest Book (Buku Tamu)</h3>
-            <div class="grid">
+            <h3>👥 Buku Tamu Digital</h3>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
                 <div><label>Tanggal</label><input type="date" id="t-tgl"></div>
-                <div><label>Ingin Bertemu</label><input type="text" id="t-temu" placeholder="Nama / Jabatan yang dituju"></div>
+                <div><label>Bertemu</label><input type="text" id="t-temu" placeholder="Nama Pimpinan"></div>
             </div>
-            <label>Identitas Tamu</label>
-            <input type="text" id="t-nama" placeholder="Nama Lengkap Tamu">
-            <input type="text" id="t-instansi" placeholder="Asal Instansi / Perusahaan (Opsional)">
-            <label>Keperluan</label>
-            <textarea id="t-ket" rows="2" placeholder="Maksud dan tujuan kunjungan..."></textarea>
+            <label>Nama Tamu</label><input type="text" id="t-nama">
+            <label>Instansi</label><input type="text" id="t-instansi">
+            <label>Keperluan</label><textarea id="t-ket" rows="2"></textarea>
             <button class="btn-main" onclick="catatTamu()">💾 SIMPAN DATA TAMU</button>
         </div>
     </div>
 
     <div id="p-agenda" class="page">
         <div class="card no-print">
-            <h3>📅 Penjadwalan & Agenda Pimpinan</h3>
-            <div class="grid">
+            <h3>📅 Jadwal & Agenda Pimpinan</h3>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
                 <div><label>Tanggal</label><input type="date" id="a-tgl"></div>
-                <div><label>Waktu</label><input type="time" id="a-waktu"></div>
+                <div><label>Waktu (Jam:Menit)</label><input type="time" id="a-waktu"></div>
             </div>
-            <label>Lokasi Acara</label>
-            <input type="text" id="a-lokasi" placeholder="Nama Tempat / Meeting Room / Zoom Link">
-            <label>Nama Acara / Detail Kegiatan</label>
-            <textarea id="a-acara" rows="2" placeholder="Detail kegiatan pimpinan..."></textarea>
-            <button class="btn-main" onclick="catatAgenda()">💾 SIMPAN JADWAL KEGIATAN</button>
+            <label>Lokasi</label><input type="text" id="a-lokasi">
+            <label>Nama Kegiatan</label><textarea id="a-acara" rows="2"></textarea>
+            <button class="btn-main" onclick="catatAgenda()">💾 SIMPAN JADWAL</button>
         </div>
-        
         <div class="card no-print">
-            <h3>📌 Jadwal Aktif Mendatang</h3>
-            <div style="overflow-x:auto;"><div id="list-agenda"></div></div>
+            <h3>📌 Agenda Aktif (Mendatang)</h3>
+            <div style="overflow-x:auto;" id="list-agenda"></div>
         </div>
     </div>
 
     <div id="p-laporan" class="page">
         <div class="card">
-            <div class="header-print">
-                <h2 id="kop-instansi" style="margin:0; font-size:24px; text-transform:uppercase;">NAMA INSTANSI</h2>
-                <p style="margin:5px 0 0 0; font-weight:bold; font-size:16px;" id="kop-judul">LAPORAN ADMINISTRASI SEKRETARIAT</p>
-                <p style="margin:5px 0 0 0; font-size:12px;" id="kop-tgl"></p>
+            <div class="header-print" style="display:none;">
+                <h2 id="kop-instansi">PT IKRAM CYBER SYSTEM</h2>
+                <p>LAPORAN ADMINISTRASI SEKRETARIAT</p>
+                <p id="kop-tgl" style="font-size:12px;"></p>
             </div>
-            
             <div class="no-print">
-                <h3>🖨️ Pusat Cetak Laporan (Report Center)</h3>
-                <label>Pilih Klasifikasi Laporan</label>
+                <h3>🖨️ Report Center</h3>
+                <label>Jenis Laporan</label>
                 <select id="lap-jenis" onchange="tampilLaporan()">
-                    <option value="surat_masuk">Buku Ekspedisi - Surat Masuk</option>
-                    <option value="surat_keluar">Buku Ekspedisi - Surat Keluar</option>
-                    <option value="tamu">Log Buku Tamu Instansi</option>
-                    <option value="agenda">Rekap Jadwal & Agenda Pimpinan</option>
+                    <option value="surat_masuk">Surat Masuk</option>
+                    <option value="surat_keluar">Surat Keluar</option>
+                    <option value="tamu">Buku Tamu</option>
+                    <option value="agenda">Agenda Pimpinan</option>
                 </select>
-                <div class="grid" style="margin-top:15px; margin-bottom:15px;">
-                    <button class="btn-print" onclick="window.print()">🖨️ CETAK DOKUMEN (PDF)</button>
-                    <button class="btn-success" onclick="exportExcel()">📊 EXPORT CSV (EXCEL)</button>
-                </div>
-                <hr style="border:0; border-top:1px solid #e2e8f0; margin-bottom:15px;">
-            </div>
-            
-            <div style="overflow-x:auto;"><div id="view-laporan"></div></div>
-            
-            <div class="ttd-area">
-                <div>
-                    <p>Mengetahui,</p><br><br><br><br>
-                    <p style="font-weight:bold; text-decoration:underline; margin:0;" id="ttd-nama">Pimpinan Instansi</p>
-                    <p style="font-size:12px; margin:0; color:#475569;">Sekretariat Eksekutif</p>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;">
+                    <button class="btn-print" onclick="window.print()">🖨️ CETAK PDF</button>
+                    <button class="btn-success" onclick="exportExcel()">📊 EXCEL</button>
                 </div>
             </div>
+            <div id="view-laporan"></div>
         </div>
     </div>
 
     <div id="p-seting" class="page no-print">
         <div class="card">
-            <h3>⚙️ Konfigurasi Sistem Sekretariat</h3>
-            <label>Nama Entitas / Instansi / Perusahaan</label>
-            <input type="text" id="set-instansi" placeholder="Contoh: Kementerian ABC / PT Maju Jaya" oninput="simpanSet()">
-            <label>Nama Pimpinan / Otorisator (Untuk TTD Laporan)</label>
-            <input type="text" id="set-bos" placeholder="Contoh: Dr. Ir. Budi Santoso, M.Sc" oninput="simpanSet()">
-            
-            <hr style="margin:20px 0; border:0; border-top:1px solid #e2e8f0;">
-            <button onclick="if(confirm('CRITICAL WARNING: Menghapus seluruh arsip korespondensi dan jadwal. Lanjutkan?')) { localStorage.clear(); location.reload(); }" style="background:var(--danger); color:white; padding:15px; font-weight:bold; font-size:14px; border-radius:8px; border:none; width:100%; cursor:pointer;">⚠️ FACTORY RESET (HAPUS DATABASE)</button>
+            <h3>⚙️ Konfigurasi</h3>
+            <label>Nama Instansi</label><input type="text" id="set-instansi" oninput="simpanSet()">
+            <label>Nama Pimpinan (TTD)</label><input type="text" id="set-bos" oninput="simpanSet()">
+            <button onclick="localStorage.clear(); location.reload();" style="background:var(--danger); color:white; border:none; padding:12px; font-weight:bold; border-radius:8px; margin-top:20px;">🗑️ RESET DATABASE</button>
         </div>
     </div>
 
@@ -248,9 +173,7 @@
         <div class="nav-item" onclick="bukaTab('tamu')"><div class="nav-icon">👥</div>TAMU</div>
         <div class="nav-item" onclick="bukaTab('agenda')"><div class="nav-icon">📅</div>AGENDA</div>
         <div class="nav-item" onclick="bukaTab('laporan')"><div class="nav-icon">🖨️</div>CETAK</div>
-        <div class="nav-item" onclick="bukaTab('seting')" style="display:none;" id="nav-set">SET</div>
     </nav>
-    <button onclick="bukaTab('seting')" class="no-print" style="position:fixed; top:15px; right:15px; width:45px; height:45px; border-radius:50%; background:white; box-shadow:0 4px 15px rgba(0,0,0,0.1); border:1px solid #e2e8f0; z-index:999; cursor:pointer;">⚙️</button>
 
     <script>
         let db_surat = JSON.parse(localStorage.getItem('secpro_surat')) || [];
@@ -258,15 +181,21 @@
         let db_agenda = JSON.parse(localStorage.getItem('secpro_agenda')) || [];
         let chartInstance = null;
 
-        let dateObj = new Date();
-        let offset = dateObj.getTimezoneOffset() * 60000;
-        let localISOTime = (new Date(dateObj - offset)).toISOString().slice(0, 10);
-        
-        document.getElementById('s-tgl').value = localISOTime; document.getElementById('s-tgl').setAttribute('max', localISOTime);
-        document.getElementById('t-tgl').value = localISOTime; document.getElementById('t-tgl').setAttribute('max', localISOTime);
-        document.getElementById('a-tgl').value = localISOTime; document.getElementById('a-waktu').value = "09:00";
+        // TIME ENGINE (FIXED)
+        function getNow() {
+            let d = new Date();
+            let offset = d.getTimezoneOffset() * 60000;
+            return new Date(d.getTime() - offset);
+        }
+
+        let isoDate = getNow().toISOString().slice(0, 10);
+        document.getElementById('s-tgl').value = isoDate;
+        document.getElementById('t-tgl').value = isoDate;
+        document.getElementById('a-tgl').value = isoDate;
+        document.getElementById('a-waktu').value = "09:00";
 
         function formatTgl(iso) { if(!iso) return "-"; let p = iso.split('-'); return `${p[2]}/${p[1]}/${p[0]}`; }
+
         function simpanSemua() {
             localStorage.setItem('secpro_surat', JSON.stringify(db_surat));
             localStorage.setItem('secpro_tamu', JSON.stringify(db_tamu));
@@ -277,218 +206,114 @@
         function simpanSet() {
             localStorage.setItem('secpro_instansi', document.getElementById('set-instansi').value);
             localStorage.setItem('secpro_bos', document.getElementById('set-bos').value);
-            updateKop();
+            refreshDashboard();
         }
 
-        function updateKop() {
-            let instansi = localStorage.getItem('secpro_instansi') || "CORPORATE ENTITY";
-            let bos = localStorage.getItem('secpro_bos') || "Director / Executive Secretary";
-            document.getElementById('set-instansi').value = localStorage.getItem('secpro_instansi') || "";
-            document.getElementById('set-bos').value = localStorage.getItem('secpro_bos') || "";
-            document.getElementById('kop-instansi').innerText = instansi.toUpperCase();
-            document.getElementById('d-kop').innerText = instansi.toUpperCase();
-            document.getElementById('kop-tgl').innerText = "Cetak Dokumen: " + new Date().toLocaleString('id-ID');
-            document.getElementById('ttd-nama').innerText = bos;
-        }
-
-        // AUTO NUMBERING SURAT KELUAR (ROMAWI)
-        function cekAutoNomor() {
-            let jen = document.getElementById('s-jenis').value;
-            document.getElementById('btn-auto').style.display = jen === 'keluar' ? 'block' : 'none';
-        }
+        // AUTO NOMOR SURAT
+        function cekAutoNomor() { document.getElementById('btn-auto').style.display = document.getElementById('s-jenis').value === 'keluar' ? 'block' : 'none'; }
         function generateNomor() {
-            let suratKeluar = db_surat.filter(x => x.jenis === 'keluar' && x.tgl.startsWith(localISOTime.slice(0,4)));
-            let count = suratKeluar.length + 1;
-            let urut = count.toString().padStart(3, '0');
+            let count = db_surat.filter(x => x.jenis === 'keluar').length + 1;
             const romawi = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
-            let bln = parseInt(localISOTime.slice(5,7));
-            let thn = localISOTime.slice(0,4);
-            document.getElementById('s-no').value = `${urut}/SEC/${romawi[bln]}/${thn}`;
+            let bln = new Date().getMonth() + 1;
+            let thn = new Date().getFullYear();
+            document.getElementById('s-no').value = `${count.toString().padStart(3,'0')}/SEC/${romawi[bln]}/${thn}`;
         }
 
         function catatSurat() {
-            let jen = document.getElementById('s-jenis').value;
-            let no = document.getElementById('s-no').value.trim();
-            let tgl = document.getElementById('s-tgl').value;
-            let pihak = document.getElementById('s-pihak').value.trim();
-            let hal = document.getElementById('s-hal').value.trim();
-            
-            if(!no || !pihak || !hal) return alert("System Error: Nomor, Pihak, dan Perihal wajib diisi!");
-            if(tgl > localISOTime) { document.getElementById('s-tgl').value = localISOTime; return alert("Invalid Date!"); }
-            
-            db_surat.push({ id: Date.now(), jenis: jen, no: no, tgl: tgl, pihak: pihak, hal: hal });
-            document.getElementById('s-no').value = ""; document.getElementById('s-pihak').value = ""; document.getElementById('s-hal').value = "";
-            simpanSemua(); alert(`Registrasi TNDE Surat ${jen.toUpperCase()} Berhasil!`);
+            let d = { id: Date.now(), jenis: document.getElementById('s-jenis').value, no: document.getElementById('s-no').value, tgl: document.getElementById('s-tgl').value, pihak: document.getElementById('s-pihak').value, hal: document.getElementById('s-hal').value };
+            if(!d.no || !d.pihak) return alert("Lengkapi data!");
+            db_surat.push(d); simpanSemua(); alert("Tersimpan!");
         }
 
         function catatTamu() {
-            let tgl = document.getElementById('t-tgl').value;
-            let nama = document.getElementById('t-nama').value.trim();
-            let instansi = document.getElementById('t-instansi').value.trim() || "-";
-            let temu = document.getElementById('t-temu').value.trim();
-            let ket = document.getElementById('t-ket').value.trim();
-            
-            if(!nama || !temu) return alert("System Error: Identitas Tamu wajib diisi!");
-            db_tamu.push({ id: Date.now(), tgl: tgl, nama: nama, instansi: instansi, temu: temu, ket: ket });
-            document.getElementById('t-nama').value = ""; document.getElementById('t-instansi').value = ""; document.getElementById('t-temu').value = ""; document.getElementById('t-ket').value = "";
-            simpanSemua(); alert("Log Buku Tamu Berhasil Disimpan!");
+            let d = { id: Date.now(), tgl: document.getElementById('t-tgl').value, nama: document.getElementById('t-nama').value, instansi: document.getElementById('t-instansi').value, temu: document.getElementById('t-temu').value, ket: document.getElementById('t-ket').value };
+            if(!d.nama) return alert("Isi Nama Tamu!");
+            db_tamu.push(d); simpanSemua(); alert("Tersimpan!");
         }
 
         function catatAgenda() {
-            let tgl = document.getElementById('a-tgl').value;
-            let waktu = document.getElementById('a-waktu').value;
-            let lokasi = document.getElementById('a-lokasi').value.trim();
-            let acara = document.getElementById('a-acara').value.trim();
-            
-            if(!acara || !lokasi) return alert("System Error: Nama Acara wajib diisi!");
-            db_agenda.push({ id: Date.now(), tgl: tgl, waktu: waktu, lokasi: lokasi, acara: acara });
-            document.getElementById('a-lokasi').value = ""; document.getElementById('a-acara').value = "";
-            simpanSemua(); alert("Jadwal Agenda Pimpinan Berhasil Ditambahkan!");
+            let d = { id: Date.now(), tgl: document.getElementById('a-tgl').value, waktu: document.getElementById('a-waktu').value, lokasi: document.getElementById('a-lokasi').value, acara: document.getElementById('a-acara').value };
+            if(!d.acara) return alert("Isi Nama Kegiatan!");
+            db_agenda.push(d); simpanSemua(); alert("Agenda Dijadwalkan!");
         }
 
-        function cetakDisposisi(id) {
-            let s = db_surat.find(x => x.id === id);
-            if(!s) return;
-            document.getElementById('d-indeks').innerText = `IDX-${s.id.toString().slice(-5)}`;
-            document.getElementById('d-tgl').innerText = formatTgl(s.tgl);
-            document.getElementById('d-terima').innerText = formatTgl(localISOTime);
-            document.getElementById('d-no').innerText = s.no;
-            document.getElementById('d-asal').innerText = s.pihak;
-            document.getElementById('d-hal').innerText = s.hal;
-            
-            // Sembunyikan yg lain saat print
-            document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-            document.getElementById('p-surat').style.display = 'block';
-            document.querySelector('#p-surat .card:nth-child(1)').classList.add('no-print');
-            document.querySelector('#p-surat .card:nth-child(2)').classList.add('no-print');
-            
-            window.print();
-            
-            // Kembalikan ke normal
-            document.querySelector('#p-surat .card:nth-child(1)').classList.remove('no-print');
-            document.querySelector('#p-surat .card:nth-child(2)').classList.remove('no-print');
-        }
+        function refreshDashboard() {
+            let inst = localStorage.getItem('secpro_instansi') || "IKRAM CYBER SYSTEM";
+            let bos = localStorage.getItem('secpro_bos') || "Pimpinan";
+            document.getElementById('v-pt').innerText = inst.toUpperCase();
+            document.getElementById('set-instansi').value = localStorage.getItem('secpro_instansi') || "";
+            document.getElementById('set-bos').value = localStorage.getItem('secpro_bos') || "";
+            document.getElementById('v-tgl').innerText = new Date().toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
 
-        function tampilLaporan() {
-            let jenis = document.getElementById('lap-jenis').value;
-            let html = "";
-            
-            if(jenis === 'surat_masuk') {
-                document.getElementById('kop-judul').innerText = "BUKU EKSPEDISI SURAT MASUK";
-                let data = db_surat.filter(x => x.jenis === 'masuk');
-                html = "<table><tr><th>Tgl Terima</th><th>Nomor Surat & Pengirim</th><th>Perihal</th></tr>";
-                if(data.length===0) html += "<tr><td colspan='3' align='center'>Arsip Kosong</td></tr>";
-                data.forEach(x => { html += `<tr><td style="white-space:nowrap;">${formatTgl(x.tgl)}</td><td><b>${x.no}</b><br><span style="color:var(--primary); font-size:11px;">Dari: ${x.pihak}</span></td><td>${x.hal}</td></tr>`; });
-                html += "</table>";
-            } else if(jenis === 'surat_keluar') {
-                document.getElementById('kop-judul').innerText = "BUKU EKSPEDISI SURAT KELUAR";
-                let data = db_surat.filter(x => x.jenis === 'keluar');
-                html = "<table><tr><th>Tgl Kirim</th><th>Nomor Surat & Tujuan</th><th>Perihal</th></tr>";
-                if(data.length===0) html += "<tr><td colspan='3' align='center'>Arsip Kosong</td></tr>";
-                data.forEach(x => { html += `<tr><td style="white-space:nowrap;">${formatTgl(x.tgl)}</td><td><b>${x.no}</b><br><span style="color:var(--danger); font-size:11px;">Ke: ${x.pihak}</span></td><td>${x.hal}</td></tr>`; });
-                html += "</table>";
-            } else if(jenis === 'tamu') {
-                document.getElementById('kop-judul').innerText = "LOG BUKU TAMU INSTANSI";
-                html = "<table><tr><th>Tgl / Bertemu</th><th>Identitas Tamu</th><th>Maksud & Tujuan</th></tr>";
-                if(db_tamu.length===0) html += "<tr><td colspan='3' align='center'>Log Kosong</td></tr>";
-                db_tamu.forEach(x => { html += `<tr><td style="white-space:nowrap;">${formatTgl(x.tgl)}<br><span style="font-size:10px; color:var(--primary); font-weight:bold;">Tujuan: ${x.temu}</span></td><td><b>${x.nama}</b><br><span style="font-size:10px; color:#64748b;">Instansi: ${x.instansi}</span></td><td>${x.ket}</td></tr>`; });
-                html += "</table>";
-            } else if(jenis === 'agenda') {
-                document.getElementById('kop-judul').innerText = "REKAP JADWAL & AGENDA PIMPINAN";
-                let data = db_agenda.slice().sort((a,b) => new Date(a.tgl) - new Date(b.tgl));
-                html = "<table><tr><th>Jadwal Pelaksanaan</th><th>Acara / Kegiatan</th><th>Lokasi</th></tr>";
-                if(data.length===0) html += "<tr><td colspan='3' align='center'>Agenda Kosong</td></tr>";
-                data.forEach(x => {
-                    let st = x.tgl < localISOTime ? "opacity:0.5;" : "font-weight:bold;";
-                    html += `<tr style="${st}"><td>${formatTgl(x.tgl)}<br><span style="color:var(--accent);">${x.waktu} WIB</span></td><td>${x.acara}</td><td>${x.lokasi}</td></tr>`;
-                });
-                html += "</table>";
-            }
-            document.getElementById('view-laporan').innerHTML = html;
+            let sm = db_surat.filter(x => x.jenis === 'masuk').length;
+            let sk = db_surat.filter(x => x.jenis === 'keluar').length;
+            document.getElementById('v-sm').innerText = sm;
+            document.getElementById('v-sk').innerText = sk;
+            document.getElementById('v-tamu').innerText = db_tamu.length;
+
+            // FIX BUG WAKTU AGENDA
+            let sekarang = new Date();
+            let agendaAktif = db_agenda.filter(x => {
+                let tglAgenda = new Date(x.tgl + "T" + x.waktu);
+                return tglAgenda >= sekarang; // Hanya yang belum lewat jamnya
+            }).sort((a,b) => new Date(a.tgl + "T" + a.waktu) - new Date(b.tgl + "T" + b.waktu));
+
+            document.getElementById('v-agenda').innerText = agendaAktif.length;
+
+            // Render List Agenda
+            let agHtml = "<table>";
+            if(agendaAktif.length === 0) agHtml += "<tr><td align='center'>Tidak ada agenda terdekat</td></tr>";
+            agendaAktif.slice(0,5).forEach(x => {
+                agHtml += `<tr><td><b>${formatTgl(x.tgl)}</b><br>${x.waktu}</td><td><b>${x.acara}</b><br><small>📍 ${x.lokasi}</small></td></tr>`;
+            });
+            document.getElementById('list-agenda').innerHTML = agHtml + "</table>";
+
+            // Render List Surat
+            let sHtml = "<table>";
+            db_surat.slice(-5).reverse().forEach(x => {
+                sHtml += `<tr><td><span class="badge ${x.jenis==='masuk'?'b-masuk':'b-keluar'}">${x.jenis}</span></td><td><b>${x.no}</b><br><small>${x.pihak}</small></td></tr>`;
+            });
+            document.getElementById('list-surat').innerHTML = sHtml + "</table>";
+
+            renderChart(sm, sk);
+            tampilLaporan();
         }
 
         function renderChart(sm, sk) {
             const ctx = document.getElementById('secChart').getContext('2d');
             if(chartInstance) chartInstance.destroy();
             chartInstance = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: ['Surat Masuk', 'Surat Keluar'],
-                    datasets: [{ data: [sm, sk], backgroundColor: ['#059669', '#e11d48'], borderWidth: 0 }]
-                },
-                options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+                type: 'doughnut',
+                data: { labels: ['Masuk', 'Keluar'], datasets: [{ data: [sm, sk], backgroundColor: ['#059669', '#be123c'], borderWidth: 0 }] },
+                options: { plugins: { legend: { position: 'bottom' } }, cutout: '70%' }
             });
         }
 
-        function refreshDashboard() {
-            updateKop();
-            let sm = 0, sk = 0;
-            let listS = "<table>";
-            db_surat.slice(-10).reverse().forEach(x => {
-                if(x.jenis === 'masuk') sm++; else sk++;
-                let badge = x.jenis === 'masuk' ? "<span class='badge b-masuk'>MASUK</span>" : "<span class='badge b-keluar'>KELUAR</span>";
-                let btnDisp = x.jenis === 'masuk' ? `<button class="btn-sm" style="background:var(--primary); color:white;" onclick="cetakDisposisi(${x.id})">🖨️ Disposisi</button>` : "";
-                listS += `<tr><td>${badge}<br><b>${x.no}</b><br><span style="font-size:10px; color:#64748b;">${formatTgl(x.tgl)}</span></td><td>${x.hal}<br><span style="font-size:10px; color:var(--accent); font-weight:bold;">${x.pihak}</span></td><td align="right">${btnDisp}</td></tr>`;
-            });
-            document.getElementById('list-surat').innerHTML = listS + "</table>";
-            
-            document.getElementById('v-sm').innerText = sm; document.getElementById('v-sk').innerText = sk;
-            document.getElementById('v-tamu').innerText = db_tamu.length;
-            
-            let agendaAktif = db_agenda.filter(x => x.tgl >= localISOTime);
-            document.getElementById('v-agenda').innerText = agendaAktif.length;
-            
-            let agHtml = "<table>";
-            agendaAktif.sort((a,b) => new Date(a.tgl) - new Date(b.tgl)).forEach(x => {
-                let badge = x.tgl === localISOTime ? "<span class='badge b-masuk'>HARI INI</span>" : "<span class='badge b-aktif'>MENDATANG</span>";
-                agHtml += `<tr><td style="white-space:nowrap;"><b>${formatTgl(x.tgl)}</b><br><span style="color:var(--accent); font-weight:bold;">${x.waktu}</span></td><td><b>${x.acara}</b> ${badge}<br><span style="font-size:10px; color:#64748b;">📍 ${x.lokasi}</span></td></tr>`;
-            });
-            document.getElementById('list-agenda').innerHTML = agHtml + "</table>";
-
-            document.getElementById('v-pt').innerText = localStorage.getItem('secpro_instansi') || "SEKRETARIAT PRO";
-            document.getElementById('v-tgl').innerText = new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-
-            renderChart(sm, sk);
-            tampilLaporan();
-        }
-
-        function exportExcel() {
-            let jenis = document.getElementById('lap-jenis').value;
-            let csv = ""; let filename = "";
-            
-            if(jenis === 'surat_masuk') {
-                csv = "Tanggal,Nomor Surat,Pengirim,Perihal\n";
-                db_surat.filter(x => x.jenis === 'masuk').forEach(x => { csv += `${x.tgl},"${x.no}","${x.pihak}","${x.hal}"\n`; });
-                filename = "Data_Surat_Masuk.csv";
-            } else if(jenis === 'surat_keluar') {
-                csv = "Tanggal,Nomor Surat,Tujuan,Perihal\n";
-                db_surat.filter(x => x.jenis === 'keluar').forEach(x => { csv += `${x.tgl},"${x.no}","${x.pihak}","${x.hal}"\n`; });
-                filename = "Data_Surat_Keluar.csv";
-            } else if(jenis === 'tamu') {
-                csv = "Tanggal,Nama Tamu,Instansi,Bertemu,Keperluan\n";
-                db_tamu.forEach(x => { csv += `${x.tgl},"${x.nama}","${x.instansi}","${x.temu}","${x.ket}"\n`; });
-                filename = "Log_Buku_Tamu.csv";
-            } else if(jenis === 'agenda') {
-                csv = "Tanggal,Waktu,Acara,Lokasi\n";
-                db_agenda.forEach(x => { csv += `${x.tgl},${x.waktu},"${x.acara}","${x.lokasi}"\n`; });
-                filename = "Rekap_Agenda.csv";
+        function tampilLaporan() {
+            let j = document.getElementById('lap-jenis').value;
+            let html = "<table>";
+            if(j === 'surat_masuk' || j === 'surat_keluar') {
+                let filter = j === 'surat_masuk' ? 'masuk' : 'keluar';
+                html += "<tr><th>Tgl</th><th>Nomor</th><th>Pihak</th><th>Perihal</th></tr>";
+                db_surat.filter(x => x.jenis === filter).forEach(x => { html += `<tr><td>${formatTgl(x.tgl)}</td><td>${x.no}</td><td>${x.pihak}</td><td>${x.hal}</td></tr>`; });
+            } else if(j === 'tamu') {
+                html += "<tr><th>Tgl</th><th>Nama</th><th>Bertemu</th><th>Keperluan</th></tr>";
+                db_tamu.forEach(x => { html += `<tr><td>${formatTgl(x.tgl)}</td><td>${x.nama}</td><td>${x.temu}</td><td>${x.ket}</td></tr>`; });
+            } else if(j === 'agenda') {
+                html += "<tr><th>Waktu</th><th>Kegiatan</th><th>Lokasi</th></tr>";
+                db_agenda.sort((a,b) => new Date(a.tgl+"T"+a.waktu) - new Date(b.tgl+"T"+b.waktu)).forEach(x => { html += `<tr><td>${formatTgl(x.tgl)}<br>${x.waktu}</td><td>${x.acara}</td><td>${x.lokasi}</td></tr>`; });
             }
-            
-            let blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-            let url = URL.createObjectURL(blob);
-            let a = document.createElement("a"); a.href = url; a.download = filename;
-            document.body.appendChild(a); a.click(); document.body.removeChild(a);
+            document.getElementById('view-laporan').innerHTML = html + "</table>";
         }
 
         function bukaTab(id) {
             document.querySelectorAll('.page, .nav-item').forEach(e => e.classList.remove('active'));
             document.getElementById('p-'+id).classList.add('active');
             let navs = document.querySelectorAll('.bottom-nav .nav-item');
-            navs.forEach(n => { if(n.getAttribute('onclick') === `bukaTab('${id}')`) n.classList.add('active'); });
+            navs.forEach(n => { if(n.getAttribute('onclick').includes(id)) n.classList.add('active'); });
         }
 
         refreshDashboard();
-        cekAutoNomor();
     </script>
 </body>
 </html>
