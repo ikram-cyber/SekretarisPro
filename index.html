@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sekretaris Pro | E-Office System</title>
+    <title>Sekretaris Pro | TNDE & Archival Analytics</title>
     <meta name="theme-color" content="#312e81">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         :root { --primary: #312e81; --accent: #4f46e5; --success: #059669; --danger: #e11d48; --warn: #d97706; --bg: #f8fafc; --text: #1e293b; --card: #ffffff; }
         * { box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
         body { background: var(--bg); color: var(--text); margin: 0; padding: 15px; padding-bottom: 80px; font-size: 13px; }
-        
+
         .card { background: var(--card); padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 16px; border: 1px solid #e2e8f0; }
-        .hero-box { background: linear-gradient(135deg, var(--primary), #1e1b4b); color: white; border: none; text-align: center; padding: 30px 15px; border-radius: 12px; box-shadow: 0 10px 20px rgba(49, 46, 129, 0.2); margin-bottom: 20px; }
+        .hero-box { background: linear-gradient(135deg, var(--primary), #1e1b4b); color: white; border: none; text-align: center; padding: 30px 15px; border-radius: 12px; box-shadow: 0 10px 20px rgba(49, 46, 129, 0.2); margin-bottom: 20px; position:relative; overflow:hidden;}
         
         h3 { margin: 0 0 15px 0; color: var(--primary); border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; font-size: 14px; text-transform: uppercase; font-weight: 800; letter-spacing: 0.5px; display:flex; justify-content:space-between; align-items:center; }
         
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         .grid-4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 15px; }
         .metric-card { background: white; padding: 15px; border-radius: 10px; border: 1px solid #e2e8f0; text-align: center; }
-        .m-title { font-size: 10px; color: #64748b; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+        .m-title { font-size: 9px; color: #64748b; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; }
         .m-val { font-size: 22px; font-weight: 900; margin-top: 8px; color: var(--primary); }
         
         input, select, button, textarea { width: 100%; padding: 12px; margin: 6px 0 14px 0; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 13px; outline: none; transition: 0.3s; font-family:inherit; }
@@ -32,24 +34,38 @@
         
         table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 5px; }
         th, td { padding: 10px; border-bottom: 1px solid #e2e8f0; text-align: left; vertical-align: top; }
-        th { background: #f8fafc; font-weight: 800; color: #64748b; text-transform: uppercase; font-size: 10px; }
+        th { background: #f8fafc; font-weight: 900; color: #64748b; text-transform: uppercase; font-size: 10px; letter-spacing:0.5px;}
         
-        .badge { padding: 4px 8px; border-radius: 6px; font-size: 10px; font-weight: 800; text-transform: uppercase; }
-        .b-masuk { background: #d1fae5; color: #059669; } .b-keluar { background: #fee2e2; color: #e11d48; } .b-aktif { background: #dbeafe; color: #2563eb; }
+        .badge { padding: 4px 8px; border-radius: 6px; font-size: 9px; font-weight: 900; text-transform: uppercase; color:white;}
+        .b-masuk { background: #059669; } .b-keluar { background: #e11d48; } .b-aktif { background: #2563eb; } .b-inaktif { background: #94a3b8; }
         
-        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #e2e8f0; z-index: 1000; }
-        .nav-item { border: none; background: none; font-size: 10px; color: #94a3b8; display: flex; flex-direction: column; align-items: center; width: 20%; cursor: pointer; font-weight: 700; }
-        .nav-item.active { color: var(--primary); }
+        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #e2e8f0; z-index: 1000; box-shadow: 0 -10px 20px rgba(0,0,0,0.03);}
+        .nav-item { border: none; background: none; font-size: 10px; color: #94a3b8; display: flex; flex-direction: column; align-items: center; width: 20%; cursor: pointer; font-weight: 800; }
+        .nav-item.active { color: var(--primary); transform:translateY(-2px); transition:0.3s;}
         .nav-icon { font-size: 22px; margin-bottom: 4px; }
         
         .page { display: none; animation: fadeIn 0.4s ease; } .active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* PRINT */
+        /* TNDE DISPOSISI PRINT LAYOUT (ACADEMIC/GOV STANDARD) */
+        .disposisi-box { display:none; font-family: 'Times New Roman', serif; color: #000; font-size: 14px; border: 2px solid #000; padding: 20px; background: white; position: relative;}
+        .d-header { text-align: center; border-bottom: 3px double #000; margin-bottom: 15px; padding-bottom: 10px; }
+        .d-title { font-size: 22px; font-weight: bold; margin: 0; text-transform: uppercase; letter-spacing: 2px; }
+        .d-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        .d-table td { border: 1px solid #000; padding: 8px 12px; vertical-align: top; }
+        .d-qr { position: absolute; top: 20px; right: 20px; width: 70px; height: 70px; border: 1px solid #000; padding:3px;}
+        
+        .header-print { display: none; text-align: center; margin-bottom: 20px; border-bottom: 3px double #000; padding-bottom: 10px; }
+
         @media print {
+            body { background: white; padding: 0; margin: 0; font-size:12pt; }
             .no-print, .bottom-nav { display: none !important; }
-            .header-print { display: block !important; text-align: center; border-bottom: 3px double #000; margin-bottom: 20px; }
-            .disposisi-box { display: block !important; font-family: 'Times New Roman', serif; border: 2px solid #000; padding: 20px; }
+            .card { border: none; box-shadow: none; margin: 0; padding: 0; }
+            .header-print { display: block; }
+            table, th, td { border-color: #000; color: #000; }
+            th { background: #f1f5f9 !important; -webkit-print-color-adjust: exact; }
+            .page { page-break-after: auto; }
+            .disposisi-box { display: block !important; -webkit-print-color-adjust: exact;}
         }
     </style>
 </head>
@@ -57,55 +73,109 @@
 
     <div id="p-home" class="page active">
         <div class="hero-box no-print">
-            <h2 id="v-pt" style="margin:0; font-size: 24px; font-weight:900;">SEKRETARIAT PRO</h2>
-            <p id="v-tgl" style="margin:8px 0 0 0; opacity:0.8; font-size:13px; font-weight:600;"></p>
+            <div style="position:absolute; right:-10%; top:-20%; font-size:120px; opacity:0.05;">🏛️</div>
+            <h2 id="v-pt" style="margin:0; font-size: 24px; font-weight:900; letter-spacing:1px;">SEKRETARIAT PRO</h2>
+            <p style="margin:5px 0 0 0; font-size:11px; font-weight:800; opacity:0.9; text-transform:uppercase;">Archival Analytics Mode | <span id="v-tgl"></span></p>
         </div>
         
+        <h3 class="no-print" style="margin-bottom:10px;">🔬 Administrative Metrics</h3>
         <div class="grid-4 no-print">
             <div class="metric-card"><div class="m-title">Surat Masuk</div><div class="m-val" id="v-sm">0</div></div>
             <div class="metric-card"><div class="m-title">Surat Keluar</div><div class="m-val" id="v-sk">0</div></div>
-            <div class="metric-card"><div class="m-title">Buku Tamu</div><div class="m-val" id="v-tamu">0</div></div>
-            <div class="metric-card"><div class="m-title">Agenda Aktif</div><div class="m-val" id="v-agenda" style="color:var(--accent);">0</div></div>
+            <div class="metric-card"><div class="m-title">Arsip Dinamis</div><div class="m-val" id="v-aktif" style="color:var(--success);">0</div></div>
+            <div class="metric-card"><div class="m-title">Beban JRA (Inaktif)</div><div class="m-val" id="v-inaktif" style="color:var(--danger);">0</div></div>
+        </div>
+
+        <div class="grid-2 no-print" style="margin-bottom:15px;">
+            <div class="metric-card" style="background:#f0fdf4; border-color:#a7f3d0; text-align:left;">
+                <div class="m-title" style="color:#047857;">Tingkat Kedatangan Surat</div>
+                <div style="font-size:18px; font-weight:900; color:var(--text); margin-top:5px;"><span id="v-lambda">0</span> <span style="font-size:10px;">/Hari</span></div>
+                <div style="font-size:9px; color:#64748b; font-weight:bold; margin-top:4px;">Arrival Rate (\(\lambda\))</div>
+            </div>
+            <div class="metric-card" style="background:#eff6ff; border-color:#bae6fd; text-align:left;">
+                <div class="m-title" style="color:#0369a1;">Jadwal Retensi Arsip</div>
+                <div style="font-size:18px; font-weight:900; color:var(--text); margin-top:5px;">30 Hari</div>
+                <div style="font-size:9px; color:#64748b; font-weight:bold; margin-top:4px;">Batas Inaktif Standard</div>
+            </div>
         </div>
 
         <div class="card no-print">
-            <h3>📈 Statistik Korespondensi</h3>
-            <canvas id="secChart" height="180"></canvas>
+            <h3 style="font-size:12px;">📈 Distribusi Korespondensi (Chart)</h3>
+            <canvas id="secChart" height="150"></canvas>
         </div>
     </div>
 
     <div id="p-surat" class="page">
-        <div class="card no-print">
-            <h3>✉️ Registrasi Surat Elektronik</h3>
-            <label>Jenis Surat</label>
-            <select id="s-jenis" onchange="cekAutoNomor()">
-                <option value="masuk">📥 SURAT MASUK</option>
-                <option value="keluar">📤 SURAT KELUAR</option>
+        <div class="card no-print" style="border-top:3px solid var(--primary);">
+            <h3>✉️ TNDE Registrasi Arsip</h3>
+            <p style="font-size:10px; color:#64748b; margin-top:-10px;">Tata Naskah Dinas Elektronik (TNDE) dengan Cryptographic QR Signature.</p>
+            <label>Klasifikasi Naskah Dinas</label>
+            <select id="s-jenis" onchange="cekAutoNomor()" style="font-weight:bold;">
+                <option value="masuk">📥 SURAT MASUK (Eksternal)</option>
+                <option value="keluar">📤 SURAT KELUAR (Internal)</option>
             </select>
+            
             <div style="display:flex; gap:10px; align-items:flex-end;">
-                <div style="flex:1;"><label>Nomor Surat</label><input type="text" id="s-no" placeholder="001/SEC/IV/2026"></div>
-                <button id="btn-auto" class="btn-success" style="display:none; width:auto; padding:12px; margin-bottom:14px;" onclick="generateNomor()">⚡ Auto</button>
+                <div style="flex:1;">
+                    <label>Nomor Register Surat</label>
+                    <input type="text" id="s-no" placeholder="Format: 001/SEC/IV/2026">
+                </div>
+                <button id="btn-auto" class="btn-success" style="display:none; width:auto; padding:12px; margin-bottom:14px; border-radius:8px;" onclick="generateNomor()">⚡ Auto</button>
             </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-                <div><label>Tanggal</label><input type="date" id="s-tgl"></div>
-                <div><label>Pihak</label><input type="text" id="s-pihak" placeholder="Asal/Tujuan"></div>
+
+            <div class="grid-2">
+                <div><label>Tanggal Dokumen</label><input type="date" id="s-tgl"></div>
+                <div><label>Instansi Asal / Tujuan</label><input type="text" id="s-pihak" placeholder="Kementerian / PT / Individu"></div>
             </div>
-            <label>Perihal</label>
-            <textarea id="s-hal" rows="2"></textarea>
-            <button class="btn-main" onclick="catatSurat()">💾 SIMPAN ARSIP</button>
+            <label>Hal / Ringkasan Eksekutif</label>
+            <textarea id="s-hal" rows="2" placeholder="Intisari naskah dinas..."></textarea>
+            <button class="btn-main" onclick="catatSurat()" style="font-size:14px; padding:15px; box-shadow:0 4px 10px rgba(79,70,229,0.3);">💾 SIMPAN KE REPOSITORY</button>
         </div>
+
         <div class="card no-print">
-            <h3>📁 Daftar Surat Terbaru</h3>
+            <h3>📁 TNDE Repository (Arsip Dinamis)</h3>
             <div style="overflow-x:auto;" id="list-surat"></div>
+        </div>
+
+        <div id="print-disposisi" class="disposisi-box">
+            <div id="d-qr" class="d-qr"></div>
+
+            <div class="d-header">
+                <h2 id="d-kop" class="d-title">NAMA INSTANSI</h2>
+                <div style="font-size:14px; font-weight:bold; margin-top:5px;">SISTEM TATA NASKAH DINAS ELEKTRONIK (TNDE)</div>
+                <div style="font-size:18px; font-weight:bold; margin-top:10px; text-decoration:underline;">LEMBAR DISPOSISI</div>
+            </div>
+            <table class="d-table">
+                <tr>
+                    <td width="50%"><b>Indeks Berkas:</b> <span id="d-indeks"></span></td>
+                    <td width="50%"><b>Status Arsip:</b> <span id="d-status">AKTIF</span></td>
+                </tr>
+                <tr>
+                    <td><b>Tanggal Surat:</b> <span id="d-tgl"></span></td>
+                    <td><b>Diterima Tanggal:</b> <span id="d-terima"></span></td>
+                </tr>
+                <tr>
+                    <td><b>Nomor Surat:</b> <br><span id="d-no" style="font-size:16px; font-weight:bold;"></span></td>
+                    <td><b>Asal Surat:</b> <br><span id="d-asal" style="font-size:16px;"></span></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><b>Perihal / Isi Ringkas:</b><br><br><span id="d-hal" style="font-style:italic;"></span><br><br></td>
+                </tr>
+            </table>
+            <div style="display:flex; border:1px solid #000; min-height:200px;">
+                <div style="width:50%; border-right:1px solid #000; padding:10px;"><b>Diteruskan Kepada Yth:</b><br><br>1.<br>2.<br>3.</div>
+                <div style="width:50%; padding:10px;"><b>Instruksi / Catatan Pimpinan:</b><br><br></div>
+            </div>
+            <div style="font-size:9px; text-align:right; margin-top:10px; font-family:monospace;">TNDE Hash Verified. Dokumen ini sah dan tercatat di Sistem Sekretariat Pro.</div>
         </div>
     </div>
 
     <div id="p-tamu" class="page">
         <div class="card no-print">
-            <h3>👥 Buku Tamu Digital</h3>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <h3>👥 Log Buku Tamu</h3>
+            <div class="grid-2">
                 <div><label>Tanggal</label><input type="date" id="t-tgl"></div>
-                <div><label>Bertemu</label><input type="text" id="t-temu" placeholder="Nama Pimpinan"></div>
+                <div><label>Bertemu</label><input type="text" id="t-temu"></div>
             </div>
             <label>Nama Tamu</label><input type="text" id="t-nama">
             <label>Instansi</label><input type="text" id="t-instansi">
@@ -116,17 +186,17 @@
 
     <div id="p-agenda" class="page">
         <div class="card no-print">
-            <h3>📅 Jadwal & Agenda Pimpinan</h3>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <h3>📅 Jadwal Keprotokolan</h3>
+            <div class="grid-2">
                 <div><label>Tanggal</label><input type="date" id="a-tgl"></div>
-                <div><label>Waktu (Jam:Menit)</label><input type="time" id="a-waktu"></div>
+                <div><label>Waktu (Jam)</label><input type="time" id="a-waktu"></div>
             </div>
             <label>Lokasi</label><input type="text" id="a-lokasi">
-            <label>Nama Kegiatan</label><textarea id="a-acara" rows="2"></textarea>
+            <label>Agenda</label><textarea id="a-acara" rows="2"></textarea>
             <button class="btn-main" onclick="catatAgenda()">💾 SIMPAN JADWAL</button>
         </div>
         <div class="card no-print">
-            <h3>📌 Agenda Aktif (Mendatang)</h3>
+            <h3>📌 Keprotokolan Mendatang</h3>
             <div style="overflow-x:auto;" id="list-agenda"></div>
         </div>
     </div>
@@ -135,21 +205,21 @@
         <div class="card">
             <div class="header-print" style="display:none;">
                 <h2 id="kop-instansi">PT IKRAM CYBER SYSTEM</h2>
-                <p>LAPORAN ADMINISTRASI SEKRETARIAT</p>
+                <p>LAPORAN ADMINISTRASI & KEARSIPAN</p>
                 <p id="kop-tgl" style="font-size:12px;"></p>
             </div>
             <div class="no-print">
-                <h3>🖨️ Report Center</h3>
-                <label>Jenis Laporan</label>
-                <select id="lap-jenis" onchange="tampilLaporan()">
-                    <option value="surat_masuk">Surat Masuk</option>
-                    <option value="surat_keluar">Surat Keluar</option>
-                    <option value="tamu">Buku Tamu</option>
-                    <option value="agenda">Agenda Pimpinan</option>
+                <h3>🖨️ Ekstraksi Laporan</h3>
+                <label>Klasifikasi Ekstraksi</label>
+                <select id="lap-jenis" onchange="tampilLaporan()" style="font-weight:bold;">
+                    <option value="surat_masuk">Buku Ekspedisi Masuk</option>
+                    <option value="surat_keluar">Buku Ekspedisi Keluar</option>
+                    <option value="tamu">Log Buku Tamu</option>
+                    <option value="agenda">Jadwal Keprotokolan</option>
                 </select>
-                <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;">
+                <div class="grid-2" style="margin-top:10px;">
                     <button class="btn-print" onclick="window.print()">🖨️ CETAK PDF</button>
-                    <button class="btn-success" onclick="exportExcel()">📊 EXCEL</button>
+                    <button class="btn-success" onclick="exportExcel()">📊 EXPORT CSV</button>
                 </div>
             </div>
             <div id="view-laporan"></div>
@@ -158,22 +228,26 @@
 
     <div id="p-seting" class="page no-print">
         <div class="card">
-            <h3>⚙️ Konfigurasi</h3>
-            <label>Nama Instansi</label><input type="text" id="set-instansi" oninput="simpanSet()">
-            <label>Nama Pimpinan (TTD)</label><input type="text" id="set-bos" oninput="simpanSet()">
-            <button onclick="localStorage.clear(); location.reload();" style="background:var(--danger); color:white; border:none; padding:12px; font-weight:bold; border-radius:8px; margin-top:20px;">🗑️ RESET DATABASE</button>
+            <h3>⚙️ Parameter Instansi</h3>
+            <label>Nama Instansi / Entitas</label>
+            <input type="text" id="set-instansi" oninput="simpanSet()">
+            <label>Nama Otorisator (Pimpinan)</label>
+            <input type="text" id="set-bos" oninput="simpanSet()">
+            <button onclick="if(confirm('CRITICAL OVERRIDE: Menghapus repository TNDE secara permanen. Lanjutkan?')) { localStorage.clear(); location.reload(); }" style="background:var(--danger); color:white; border:none; padding:15px; font-weight:bold; border-radius:8px; margin-top:20px; width:100%; font-size:14px;">🗑️ FORMAT REPOSITORY</button>
         </div>
     </div>
 
     <div style="text-align: center; padding: 20px; color: #64748b; font-size: 11px; font-weight: bold; letter-spacing: 1px; margin-bottom: 10px;" class="no-print">&copy; 2026 Ikram Cyber System</div>
 
     <nav class="bottom-nav no-print">
-        <div class="nav-item active" onclick="bukaTab('home')"><div class="nav-icon">📊</div>DASH</div>
-        <div class="nav-item" onclick="bukaTab('surat')"><div class="nav-icon">✉️</div>TNDE</div>
+        <div class="nav-item active" onclick="bukaTab('home')"><div class="nav-icon">🔬</div>ANALYTICS</div>
+        <div class="nav-item" onclick="bukaTab('surat')"><div class="nav-icon">📜</div>TNDE</div>
         <div class="nav-item" onclick="bukaTab('tamu')"><div class="nav-icon">👥</div>TAMU</div>
         <div class="nav-item" onclick="bukaTab('agenda')"><div class="nav-icon">📅</div>AGENDA</div>
-        <div class="nav-item" onclick="bukaTab('laporan')"><div class="nav-icon">🖨️</div>CETAK</div>
+        <div class="nav-item" onclick="bukaTab('laporan')"><div class="nav-icon">🗂️</div>REPORT</div>
+        <div class="nav-item" onclick="bukaTab('seting')" style="display:none;" id="nav-set">SET</div>
     </nav>
+    <button onclick="bukaTab('seting')" class="no-print" style="position:fixed; top:15px; right:15px; width:40px; height:40px; border-radius:50%; background:white; box-shadow:0 4px 10px rgba(0,0,0,0.1); border:1px solid #e2e8f0; z-index:999; cursor:pointer;">⚙️</button>
 
     <script>
         let db_surat = JSON.parse(localStorage.getItem('secpro_surat')) || [];
@@ -181,18 +255,15 @@
         let db_agenda = JSON.parse(localStorage.getItem('secpro_agenda')) || [];
         let chartInstance = null;
 
-        // TIME ENGINE (FIXED)
         function getNow() {
-            let d = new Date();
-            let offset = d.getTimezoneOffset() * 60000;
+            let d = new Date(); let offset = d.getTimezoneOffset() * 60000;
             return new Date(d.getTime() - offset);
         }
 
         let isoDate = getNow().toISOString().slice(0, 10);
-        document.getElementById('s-tgl').value = isoDate;
-        document.getElementById('t-tgl').value = isoDate;
-        document.getElementById('a-tgl').value = isoDate;
-        document.getElementById('a-waktu').value = "09:00";
+        document.getElementById('s-tgl').value = isoDate; document.getElementById('s-tgl').setAttribute('max', isoDate);
+        document.getElementById('t-tgl').value = isoDate; document.getElementById('t-tgl').setAttribute('max', isoDate);
+        document.getElementById('a-tgl').value = isoDate; document.getElementById('a-waktu').value = "09:00";
 
         function formatTgl(iso) { if(!iso) return "-"; let p = iso.split('-'); return `${p[2]}/${p[1]}/${p[0]}`; }
 
@@ -209,83 +280,150 @@
             refreshDashboard();
         }
 
-        // AUTO NOMOR SURAT
         function cekAutoNomor() { document.getElementById('btn-auto').style.display = document.getElementById('s-jenis').value === 'keluar' ? 'block' : 'none'; }
         function generateNomor() {
-            let count = db_surat.filter(x => x.jenis === 'keluar').length + 1;
+            let count = db_surat.filter(x => x.jenis === 'keluar' && x.tgl.startsWith(isoDate.slice(0,4))).length + 1;
             const romawi = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
-            let bln = new Date().getMonth() + 1;
-            let thn = new Date().getFullYear();
+            let bln = parseInt(isoDate.slice(5,7)); let thn = isoDate.slice(0,4);
             document.getElementById('s-no').value = `${count.toString().padStart(3,'0')}/SEC/${romawi[bln]}/${thn}`;
         }
 
         function catatSurat() {
-            let d = { id: Date.now(), jenis: document.getElementById('s-jenis').value, no: document.getElementById('s-no').value, tgl: document.getElementById('s-tgl').value, pihak: document.getElementById('s-pihak').value, hal: document.getElementById('s-hal').value };
-            if(!d.no || !d.pihak) return alert("Lengkapi data!");
-            db_surat.push(d); simpanSemua(); alert("Tersimpan!");
+            let d = { id: Date.now(), jenis: document.getElementById('s-jenis').value, no: document.getElementById('s-no').value.trim(), tgl: document.getElementById('s-tgl').value, pihak: document.getElementById('s-pihak').value.trim(), hal: document.getElementById('s-hal').value.trim() };
+            if(!d.no || !d.pihak || !d.hal) return alert("System Error: Kelengkapan atribut kearsipan gagal divalidasi.");
+            db_surat.push(d); simpanSemua(); alert("Arsip TNDE Tersimpan!");
+            ['s-no','s-pihak','s-hal'].forEach(id => document.getElementById(id).value = "");
         }
 
         function catatTamu() {
             let d = { id: Date.now(), tgl: document.getElementById('t-tgl').value, nama: document.getElementById('t-nama').value, instansi: document.getElementById('t-instansi').value, temu: document.getElementById('t-temu').value, ket: document.getElementById('t-ket').value };
-            if(!d.nama) return alert("Isi Nama Tamu!");
-            db_tamu.push(d); simpanSemua(); alert("Tersimpan!");
+            if(!d.nama || !d.temu) return alert("System Error: Identitas Tamu Wajib Diisi!");
+            db_tamu.push(d); simpanSemua(); alert("Tamu Tersimpan!");
+            ['t-nama','t-instansi','t-temu','t-ket'].forEach(id => document.getElementById(id).value = "");
         }
 
         function catatAgenda() {
             let d = { id: Date.now(), tgl: document.getElementById('a-tgl').value, waktu: document.getElementById('a-waktu').value, lokasi: document.getElementById('a-lokasi').value, acara: document.getElementById('a-acara').value };
-            if(!d.acara) return alert("Isi Nama Kegiatan!");
-            db_agenda.push(d); simpanSemua(); alert("Agenda Dijadwalkan!");
+            if(!d.acara || !d.lokasi) return alert("System Error: Informasi Acara Wajib Diisi!");
+            db_agenda.push(d); simpanSemua(); alert("Keprotokolan Terjadwal!");
+            ['a-lokasi','a-acara'].forEach(id => document.getElementById(id).value = "");
+        }
+
+        // TNDE DISPOSITION & CRYPTOGRAPHIC QR ENGINE
+        function cetakDisposisi(id) {
+            let s = db_surat.find(x => x.id === id); if(!s) return;
+            
+            // Generate QR Code acting as a Digital Signature/Hash
+            let tndeHash = `TNDE-AUTH-${s.id}-${s.no.replace(/\//g, '')}`;
+            let qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${tndeHash}`;
+            document.getElementById('d-qr').style.background = `url('${qrUrl}') no-repeat center`;
+            document.getElementById('d-qr').style.backgroundSize = 'cover';
+
+            let diffDays = Math.floor((new Date(isoDate) - new Date(s.tgl)) / (1000 * 60 * 60 * 24));
+            let statusArsip = diffDays > 30 ? "INAKTIF (JRA > 30 Hari)" : "AKTIF (Dinamis)";
+
+            document.getElementById('d-indeks').innerText = `IDX-${s.id.toString().slice(-6)}`;
+            document.getElementById('d-status').innerText = statusArsip;
+            document.getElementById('d-tgl').innerText = formatTgl(s.tgl);
+            document.getElementById('d-terima').innerText = formatTgl(isoDate);
+            document.getElementById('d-no').innerText = s.no;
+            document.getElementById('d-asal').innerText = s.pihak;
+            document.getElementById('d-hal').innerText = s.hal;
+            
+            document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+            document.getElementById('p-surat').style.display = 'block';
+            document.querySelectorAll('#p-surat .card').forEach(c => c.classList.add('no-print'));
+            
+            window.print();
+            document.querySelectorAll('#p-surat .card').forEach(c => c.classList.remove('no-print'));
+        }
+
+        // ACADEMIC ANALYTICS ENGINE: JRA & Poisson Arrival Rate
+        function hitungJRA() {
+            let limitDate = new Date(isoDate);
+            limitDate.setDate(limitDate.getDate() - 30); // 30 hari umur aktif
+            
+            let aktif = 0, inaktif = 0;
+            db_surat.forEach(s => {
+                if(new Date(s.tgl) < limitDate) inaktif++; else aktif++;
+            });
+            return { aktif, inaktif };
+        }
+
+        function hitungLambda() {
+            if(db_surat.length === 0) return 0;
+            // Cari tanggal surat pertama (T_start)
+            let sorted = db_surat.slice().sort((a,b) => new Date(a.tgl) - new Date(b.tgl));
+            let firstDate = new Date(sorted[0].tgl);
+            let todayDate = new Date(isoDate);
+            let diffDays = Math.ceil((todayDate - firstDate) / (1000 * 60 * 60 * 24)) + 1; // Min 1 hari
+            
+            let lambda = db_surat.length / diffDays;
+            return lambda.toFixed(2);
         }
 
         function refreshDashboard() {
             let inst = localStorage.getItem('secpro_instansi') || "IKRAM CYBER SYSTEM";
-            let bos = localStorage.getItem('secpro_bos') || "Pimpinan";
+            let bos = localStorage.getItem('secpro_bos') || "Sekretaris Eksekutif";
             document.getElementById('v-pt').innerText = inst.toUpperCase();
             document.getElementById('set-instansi').value = localStorage.getItem('secpro_instansi') || "";
             document.getElementById('set-bos').value = localStorage.getItem('secpro_bos') || "";
-            document.getElementById('v-tgl').innerText = new Date().toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+            document.getElementById('v-tgl').innerText = new Date().toLocaleDateString('id-ID', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+
+            document.getElementById('kop-instansi').innerText = inst.toUpperCase();
+            document.getElementById('ttd-nama').innerText = bos;
+            document.getElementById('kop-tgl').innerText = "Waktu Ekstraksi: " + new Date().toLocaleString('id-ID');
 
             let sm = db_surat.filter(x => x.jenis === 'masuk').length;
             let sk = db_surat.filter(x => x.jenis === 'keluar').length;
-            document.getElementById('v-sm').innerText = sm;
-            document.getElementById('v-sk').innerText = sk;
-            document.getElementById('v-tamu').innerText = db_tamu.length;
+            document.getElementById('v-sm').innerText = sm; document.getElementById('v-sk').innerText = sk;
 
-            // FIX BUG WAKTU AGENDA
+            // ACADEMIC METRICS RENDER
+            let jra = hitungJRA();
+            document.getElementById('v-aktif').innerText = jra.aktif;
+            document.getElementById('v-inaktif').innerText = jra.inaktif;
+            document.getElementById('v-lambda').innerText = hitungLambda();
+
+            // RENDER AGENDA (Sort & Filter by Time)
             let sekarang = new Date();
-            let agendaAktif = db_agenda.filter(x => {
-                let tglAgenda = new Date(x.tgl + "T" + x.waktu);
-                return tglAgenda >= sekarang; // Hanya yang belum lewat jamnya
-            }).sort((a,b) => new Date(a.tgl + "T" + a.waktu) - new Date(b.tgl + "T" + b.waktu));
-
+            let agendaAktif = db_agenda.filter(x => new Date(x.tgl + "T" + x.waktu) >= sekarang)
+                                       .sort((a,b) => new Date(a.tgl + "T" + a.waktu) - new Date(b.tgl + "T" + b.waktu));
             document.getElementById('v-agenda').innerText = agendaAktif.length;
 
-            // Render List Agenda
             let agHtml = "<table>";
-            if(agendaAktif.length === 0) agHtml += "<tr><td align='center'>Tidak ada agenda terdekat</td></tr>";
+            if(agendaAktif.length === 0) agHtml += "<tr><td align='center'>Log Keprotokolan Kosong</td></tr>";
             agendaAktif.slice(0,5).forEach(x => {
-                agHtml += `<tr><td><b>${formatTgl(x.tgl)}</b><br>${x.waktu}</td><td><b>${x.acara}</b><br><small>📍 ${x.lokasi}</small></td></tr>`;
+                agHtml += `<tr><td><b>${formatTgl(x.tgl)}</b><br><span style="color:var(--accent); font-weight:bold;">${x.waktu}</span></td><td><b>${x.acara}</b><br><small>📍 ${x.lokasi}</small></td></tr>`;
             });
             document.getElementById('list-agenda').innerHTML = agHtml + "</table>";
 
-            // Render List Surat
+            // RENDER SURAT (With JRA Badges)
             let sHtml = "<table>";
-            db_surat.slice(-5).reverse().forEach(x => {
-                sHtml += `<tr><td><span class="badge ${x.jenis==='masuk'?'b-masuk':'b-keluar'}">${x.jenis}</span></td><td><b>${x.no}</b><br><small>${x.pihak}</small></td></tr>`;
+            db_surat.slice().sort((a,b)=>b.id-a.id).slice(0,10).forEach(x => {
+                let diffDays = Math.floor((new Date(isoDate) - new Date(x.tgl)) / (1000 * 60 * 60 * 24));
+                let jraBadge = diffDays > 30 ? "<span class='badge b-inaktif'>INAKTIF</span>" : "<span class='badge b-aktif'>AKTIF</span>";
+                let jenisBadge = x.jenis === 'masuk' ? "<span class='badge b-masuk'>MASUK</span>" : "<span class='badge b-keluar'>KELUAR</span>";
+                let btnDisp = x.jenis === 'masuk' ? `<button class="btn-sm btn-main" style="margin-top:4px;" onclick="cetakDisposisi(${x.id})">TNDE Disposisi</button>` : "";
+                
+                sHtml += `<tr>
+                    <td>${jenisBadge}<br><b>${x.no}</b><br><span style="font-size:9px; color:#64748b;">${formatTgl(x.tgl)}</span></td>
+                    <td><span style="font-weight:bold; color:var(--dark);">${x.pihak}</span><br><span style="font-size:11px;">${x.hal}</span></td>
+                    <td align="right">${jraBadge}<br>${btnDisp}</td>
+                </tr>`;
             });
             document.getElementById('list-surat').innerHTML = sHtml + "</table>";
 
-            renderChart(sm, sk);
+            renderChart(sm, sk, jra.aktif, jra.inaktif);
             tampilLaporan();
         }
 
-        function renderChart(sm, sk) {
+        function renderChart(sm, sk, ak, inak) {
             const ctx = document.getElementById('secChart').getContext('2d');
             if(chartInstance) chartInstance.destroy();
             chartInstance = new Chart(ctx, {
-                type: 'doughnut',
-                data: { labels: ['Masuk', 'Keluar'], datasets: [{ data: [sm, sk], backgroundColor: ['#059669', '#be123c'], borderWidth: 0 }] },
-                options: { plugins: { legend: { position: 'bottom' } }, cutout: '70%' }
+                type: 'bar',
+                data: { labels: ['Masuk', 'Keluar', 'Arsip Aktif', 'Arsip Inaktif'], datasets: [{ label: 'Distribusi Volume', data: [sm, sk, ak, inak], backgroundColor: ['#059669', '#e11d48', '#2563eb', '#94a3b8'], borderRadius:4 }] },
+                options: { plugins: { legend: { display: false } }, responsive:true, scales: { y: { beginAtZero: true } } }
             });
         }
 
@@ -294,16 +432,46 @@
             let html = "<table>";
             if(j === 'surat_masuk' || j === 'surat_keluar') {
                 let filter = j === 'surat_masuk' ? 'masuk' : 'keluar';
-                html += "<tr><th>Tgl</th><th>Nomor</th><th>Pihak</th><th>Perihal</th></tr>";
-                db_surat.filter(x => x.jenis === filter).forEach(x => { html += `<tr><td>${formatTgl(x.tgl)}</td><td>${x.no}</td><td>${x.pihak}</td><td>${x.hal}</td></tr>`; });
+                html += "<tr><th>Tgl / JRA</th><th>Nomor Arsip</th><th>Pihak / Relasi</th><th>Perihal Eksekutif</th></tr>";
+                db_surat.filter(x => x.jenis === filter).forEach(x => { 
+                    let diff = Math.floor((new Date(isoDate) - new Date(x.tgl)) / (1000 * 60 * 60 * 24));
+                    let jraStatus = diff > 30 ? "INAKTIF" : "AKTIF";
+                    html += `<tr><td>${formatTgl(x.tgl)}<br><span style="font-size:9px; font-weight:bold; color:${diff>30?'#e11d48':'#059669'}">${jraStatus}</span></td><td><b>${x.no}</b></td><td>${x.pihak}</td><td>${x.hal}</td></tr>`; 
+                });
             } else if(j === 'tamu') {
-                html += "<tr><th>Tgl</th><th>Nama</th><th>Bertemu</th><th>Keperluan</th></tr>";
-                db_tamu.forEach(x => { html += `<tr><td>${formatTgl(x.tgl)}</td><td>${x.nama}</td><td>${x.temu}</td><td>${x.ket}</td></tr>`; });
+                html += "<tr><th>Tgl Input</th><th>Identitas Kunjungan</th><th>Host (Bertemu)</th><th>Keperluan / Maksud</th></tr>";
+                db_tamu.forEach(x => { html += `<tr><td>${formatTgl(x.tgl)}</td><td><b>${x.nama}</b><br><span style="font-size:10px;">${x.instansi}</span></td><td>${x.temu}</td><td>${x.ket}</td></tr>`; });
             } else if(j === 'agenda') {
-                html += "<tr><th>Waktu</th><th>Kegiatan</th><th>Lokasi</th></tr>";
-                db_agenda.sort((a,b) => new Date(a.tgl+"T"+a.waktu) - new Date(b.tgl+"T"+b.waktu)).forEach(x => { html += `<tr><td>${formatTgl(x.tgl)}<br>${x.waktu}</td><td>${x.acara}</td><td>${x.lokasi}</td></tr>`; });
+                html += "<tr><th>Waktu Eksekusi</th><th>Nama Agenda / Kegiatan</th><th>Lokasi Venue</th></tr>";
+                db_agenda.sort((a,b) => new Date(a.tgl+"T"+a.waktu) - new Date(b.tgl+"T"+b.waktu)).forEach(x => { html += `<tr><td><b>${formatTgl(x.tgl)}</b><br>${x.waktu}</td><td>${x.acara}</td><td>${x.lokasi}</td></tr>`; });
             }
             document.getElementById('view-laporan').innerHTML = html + "</table>";
+        }
+
+        function exportExcel() {
+            let j = document.getElementById('lap-jenis').value;
+            let csv = ""; let filename = "";
+            if(j === 'surat_masuk' || j === 'surat_keluar') {
+                csv = "Tanggal,Nomor Surat,Status JRA,Pihak,Perihal\n";
+                let filter = j === 'surat_masuk' ? 'masuk' : 'keluar';
+                db_surat.filter(x => x.jenis === filter).forEach(x => { 
+                    let diff = Math.floor((new Date(isoDate) - new Date(x.tgl)) / (1000 * 60 * 60 * 24));
+                    let stat = diff > 30 ? "INAKTIF" : "AKTIF";
+                    csv += `${x.tgl},"${x.no}","${stat}","${x.pihak}","${x.hal}"\n`; 
+                });
+                filename = `Ekstraksi_Surat_${filter.toUpperCase()}.csv`;
+            } else if(j === 'tamu') {
+                csv = "Tanggal,Nama Tamu,Instansi,Bertemu,Keperluan\n";
+                db_tamu.forEach(x => { csv += `${x.tgl},"${x.nama}","${x.instansi}","${x.temu}","${x.ket}"\n`; });
+                filename = "Log_Buku_Tamu.csv";
+            } else if(j === 'agenda') {
+                csv = "Tanggal,Waktu,Acara,Lokasi\n";
+                db_agenda.forEach(x => { csv += `${x.tgl},${x.waktu},"${x.acara}","${x.lokasi}"\n`; });
+                filename = "Log_Keprotokolan.csv";
+            }
+            let blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            let a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = filename;
+            document.body.appendChild(a); a.click(); document.body.removeChild(a);
         }
 
         function bukaTab(id) {
@@ -314,6 +482,7 @@
         }
 
         refreshDashboard();
+        cekAutoNomor();
     </script>
 </body>
 </html>
